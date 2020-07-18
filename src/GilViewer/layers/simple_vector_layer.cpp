@@ -270,11 +270,11 @@ void simple_vector_layer::add_ellipse(double dx_center, double dy_center, double
     m_rotatedellipses.push_back(et);
 }
 
-void simple_vector_layer::add_text( double x , double y , const std::string &text , const wxColour &color )
+void simple_vector_layer::add_text(double x , double y , const std::string &text , const wxColour &color )
 {
     point_type pt;
     pt.x=x; pt.y=y;
-    m_texts.push_back( make_pair<point_type,string>(pt,text) );
+    m_texts.push_back(make_pair(pt,text));
 }
 
 void simple_vector_layer::clear()

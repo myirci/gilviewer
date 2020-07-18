@@ -140,15 +140,15 @@ public:
 
     virtual std::string available_formats_wildcard() const;
 
-    void add_circle( double x , double y , double radius );
-    void add_line( double x1 , double y1 , double x2 , double y2 );
-    void add_polyline( const std::vector<double> &x , const std::vector<double> &y );
-    void add_point( double x , double y );
-    void add_spline( spline_type points );
+    void add_circle(double x , double y , double radius );
+    void add_line(double x1 , double y1 , double x2 , double y2 );
+    void add_polyline(const std::vector<double> &x , const std::vector<double> &y );
+    void add_point(double x , double y );
+    void add_spline(spline_type points );
     void add_ellipse(double x_center, double y_center, double a, double b);
     void add_ellipse(double x_center, double y_center, double a, double b, double theta);
-    void add_polygon( const std::vector<double> &x , const std::vector<double> &y );
-    void add_text( double x , double y , const std::string &text , const wxColour &color = *wxRED );
+    void add_polygon(const std::vector<double> &x , const std::vector<double> &y );
+    void add_text(double x, double y, const std::string &text, const wxColour &color = *wxRED );
 
     /// Accessors
     virtual unsigned int num_polygons() const;

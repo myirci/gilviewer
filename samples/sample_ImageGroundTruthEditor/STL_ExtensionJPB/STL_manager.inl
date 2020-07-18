@@ -61,7 +61,7 @@ template < class T > std :: vector < T > read_vector ( const std :: string & pat
     try
     {
         res . clear ( ) ;
-        for ( bool is_read_ok = file >> elem ; is_read_ok ; is_read_ok = file >> elem )
+        for ( bool is_read_ok = file >> elem ; is_read_ok ; is_read_ok = static_cast<bool>(file >> elem))
         {
             res . push_back ( elem ) ;
         }

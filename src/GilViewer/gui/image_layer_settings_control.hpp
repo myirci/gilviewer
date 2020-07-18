@@ -41,6 +41,7 @@ Authors:
 
 #include <vector>
 #include <wx/panel.h>
+#include <boost/shared_ptr.hpp>
 
 #include "../gui/layer_settings_control.hpp"
 
@@ -122,7 +123,7 @@ protected:
 class histogram_plotter : public wxPanel
 {
 public:
-    typedef std::vector<std::vector<double> > histogram_type;
+    typedef std::vector<std::vector<double>> histogram_type;
 
     histogram_plotter(image_layer_settings_control* parent, const unsigned int redChannel, const unsigned int greenChannel, const unsigned int blueChannel, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
 

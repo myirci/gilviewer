@@ -56,9 +56,9 @@ Authors:
 
 using namespace std;
 
-void xml_display_configuration_io::read( layer_control* layerControl , const string filename )
+void xml_display_configuration_io::read(layer_control* layerControl, const string filename)
 {
-    TiXmlDocument doc( filename.c_str() );
+    TiXmlDocument doc(filename.c_str() );
     if ( !doc.LoadFile() )
     {
         wxLogMessage( _("Error opening file!") );
@@ -133,7 +133,7 @@ void xml_display_configuration_io::read( layer_control* layerControl , const str
                             {
                                 ostringstream mes;
                                 mes << "File " << path << " does not exist!";
-                                GILVIEWER_LOG_ERROR( mes );
+                                GILVIEWER_LOG_ERROR(mes.str());
                                 return;
                             }
                         }

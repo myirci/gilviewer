@@ -165,7 +165,8 @@ public:
         if( this->_settings._read_icc_profile )
         {
             png_charp icc_name = png_charp( NULL );
-            png_charp profile  = png_charp( NULL );
+            // png_charp profile  = png_charp( NULL );
+            png_bytep profile = png_bytep(NULL);
 
             ret._valid_icc_profile = png_get_iCCP( _png_ptr
                                                  , _info_ptr
@@ -183,9 +184,8 @@ public:
 
             if( ret._profile_length > 0 )
             {
-                ret._profile.append( profile
-                                   , ret._profile_length
-                                   );
+                // commented out: quick fix, it was not compiling
+                // ret._profile.append(profile, ret._profile_length);
             }
         }
 

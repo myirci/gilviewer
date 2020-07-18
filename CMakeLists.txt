@@ -1,33 +1,23 @@
-CMAKE_MINIMUM_REQUIRED( VERSION 2.6 )
-
-################################################
-##
-## Pour avoir une version release, utiliser la ligne de commande suivante :
-##    (c)cmake . -DCMAKE_BUILD_TYPE:STRING=Release
-## Pour la version debug (par defaut ...), je vous laisse deviner ;-)
-##
-################################################
-
-# set(CMAKE_BUILD_TYPE Debug)
-
-#Nom du projet
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 PROJECT(GilViewer)
 
-include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/src )
+# SET(CMAKE_BUILD_TYPE Debug)
+
+INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 #set(BUILD_SHARED_LIBS ON)
-if(WIN32)
-  set(BUILD_SHARED_LIBS OFF CACHE BOOL "build lib shared/static")
-else(WIN32)
-  set(BUILD_SHARED_LIBS ON CACHE BOOL "build lib shared/static")
-endif(WIN32)
+IF(WIN32)
+  SET(BUILD_SHARED_LIBS OFF CACHE BOOL "build lib shared/static")
+ELSE(WIN32)
+  SET(BUILD_SHARED_LIBS ON CACHE BOOL "build lib shared/static")
+ENDIF(WIN32)
 
-message( STATUS "Building in " ${CMAKE_BUILD_TYPE} " mode" )
+MESSAGE(STATUS "Building in " ${CMAKE_BUILD_TYPE} " mode")
  
 IF(UNIX) 
-        add_definitions(-Wall -fPIC)
-        SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG" CACHE STRING "Flags used by the compiler during debug builds." FORCE)
-        #add_definitions(-pedantic)
+	add_definitions(-Wall -fPIC)
+    SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG" CACHE STRING "Flags used by the compiler during debug builds." FORCE)
+    #add_definitions(-pedantic)
 ENDIF(UNIX)
 
 SET(CMAKE_CONFIG_DIR cmake)
@@ -183,36 +173,28 @@ else(NOT WIN32)
 endif(NOT WIN32)
 
 # Find BOOST
-set( Boost_ADDITIONAL_VERSIONS 
-           "1.39.0" "1.39" 
-           "1.40.0" "1.40" 
-           "1.41.0" "1.41" 
-           "1.42.0" "1.42" 
-           "1.43.0" "1.43"
-           "1.44.0" "1.44"
-           "1.46" "1.46.1"
-           "1.47" "1.47.0"
-           "1.48" "1.48.0"
-           "1.49" "1.49.0"
-           "1.50" "1.50.0"
-           "1.51" "1.51.0"
-           "1.52" "1.52.0"
-           "1.53" "1.53.0" 
-     )
+
+
+# SET( Boost_ADDITIONAL_VERSIONS "1.67" "1.67.0" "1.71" "1.71.0")
+
 set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "use boost static lib")
 set(Boost_USE_MULTITHREAD ON CACHE BOOL "use boost multi thread lib")
 set(BOOST_ROOT "" CACHE PATH "path to boost root directory")
 set(Boost_NO_SYSTEM_PATHS FALSE CACHE BOOL "use boost path env variable")
-FIND_PACKAGE( Boost 1.37 COMPONENTS filesystem system thread serialization )
-IF( NOT Boost_FOUND )
-    MESSAGE(FATAL_ERROR "Boost not found ! Please set Boost path ...")
-ELSE()
-        INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIRS} )
-    link_directories( ${Boost_LIBRARY_DIRS} )
+
+FIND_PACKAGE(Boost 1.71.0 COMPONENTS filesystem system thread serialization)
+IF(Boost_FOUND)
+	INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIRS})
+    link_directories( ${Boost_LIBRARY_DIRS})
 	if( WIN32 )
 		add_definitions( -DBOOST_ALL_NO_LIB )
 	endif()
+ELSE(Boost_FOUND)
+	MESSAGE(FATAL_ERROR "Boost not found ! Please set Boost path ...")
 ENDIF()
+
+
+
 
 ####
 #### Ajout du fichier contenant les regles de construction des libs externes : tinyxml

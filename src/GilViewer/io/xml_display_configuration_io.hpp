@@ -46,8 +46,8 @@ class layer_control;
 class xml_display_configuration_io
 {
 public:
-    static void read( layer_control* layerControl , const std::string filename );
-    static void write( const layer_control* layerControl , const std::string filename );
+    static void read(layer_control* layerControl, const std::string filename );
+    static void write(const layer_control* layerControl, const std::string filename );
 };
 
 #endif // __XML_DISPLAY_CONFIGURATION_IO_HPP__

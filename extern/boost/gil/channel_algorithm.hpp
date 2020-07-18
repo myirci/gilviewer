@@ -25,6 +25,7 @@
 
 #include "gil_config.hpp"
 #include "channel.hpp"
+#include <limits>
 #include <boost/mpl/less.hpp>
 #include <boost/mpl/integral_c.hpp>
 #include <boost/mpl/greater.hpp>
@@ -49,9 +50,8 @@ template <typename SrcChannelV, typename DstChannelV, bool SrcLessThanDst, bool 
 ////  unsigned_integral_max_value - given an unsigned integral channel type, returns its maximum value as an MPL integral constant
 //////////////////////////////////////
 
-
 template <typename UnsignedIntegralChannel>
-struct unsigned_integral_max_value : public mpl::integral_c<UnsignedIntegralChannel,-1> {};
+struct unsigned_integral_max_value : public mpl::integral_c<UnsignedIntegralChannel, std::numeric_limits<UnsignedIntegralChannel>::max()> {};
 
 template <>
 struct unsigned_integral_max_value<uint8_t> : public mpl::integral_c<uint32_t,0xFF> {};

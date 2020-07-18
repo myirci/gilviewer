@@ -1,0 +1,27 @@
+get_filename_component(SELF_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+# TODO
+if(WIN32)
+	include(${SELF_DIR}/GilViewer-targets.cmake)
+else()
+	include(${SELF_DIR}/GilViewer-targets.cmake)
+endif()
+
+if(WIN32)
+        get_filename_component(GilViewer_LIBRARY_DIR "${SELF_DIR}/"  ABSOLUTE)
+        get_filename_component(GilViewer_INCLUDE_DIR "${SELF_DIR}/../../include/GilViewer"  ABSOLUTE)
+        get_filename_component(root_INCLUDE_DIR "${GilViewer_INCLUDE_DIR}/../" ABSOLUTE)
+	get_filename_component(tinyxml_INCLUDE_DIR "${SELF_DIR}/../../include/tinyxml"  ABSOLUTE)
+	
+else()
+        get_filename_component(GilViewer_LIBRARY_DIR "${SELF_DIR}/"  ABSOLUTE)
+        get_filename_component(root_INCLUDE_DIR "${GilViewer_INCLUDE_DIR}/../" ABSOLUTE)
+	get_filename_component(GilViewer_INCLUDE_DIR "${SELF_DIR}/../../include/GilViewer"  ABSOLUTE)
+	get_filename_component(tinyxml_INCLUDE_DIR "${SELF_DIR}/../../include/tinyxml"  ABSOLUTE)
+endif()
+SET(GilViewer_tinyxml_SHARED ON )
+
+SET(GilViewer_INCLUDE_DIRS "${GilViewer_INCLUDE_DIR}" "${root_INCLUDE_DIR}" )
+SET(GilViewer_LIBRARY_DIRS "${GilViewer_LIBRARY_DIR}")
+IF(GilViewer_tinyxml_SHARED)
+	SET(GilViewer_INCLUDE_DIRS "${GilViewer_INCLUDE_DIRS}" "${tinyxml_INCLUDE_DIR}")
+ENDIF(GilViewer_tinyxml_SHARED)

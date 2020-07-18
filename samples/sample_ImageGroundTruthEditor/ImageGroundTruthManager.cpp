@@ -141,7 +141,7 @@ void ImageGroundTruthManager::LoadBoxes()
 
     try
     {
-        v_dummy_data = read_vector < coordinate_t > (path);
+        v_dummy_data = read_vector <coordinate_t> (path);
     }
     catch(...)
     {

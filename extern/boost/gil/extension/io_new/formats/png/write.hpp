@@ -183,9 +183,9 @@ public:
         {
             png_set_iCCP( _png_ptr
                         , _info_ptr
-                        , const_cast< png_charp >( info._icc_name.c_str() )
+                        , info._icc_name.c_str() // reinterpret_cast<png_charp>(const_cast<char*>(info._icc_name.c_str()))   //
                         , info._iccp_compression_type
-                        , const_cast< png_charp >( info._profile.c_str() )
+                        , reinterpret_cast<png_const_bytep>(info._profile.c_str()) // reinterpret_cast<png_charp>(const_cast<char*>(info._profile.c_str()))//
                         , info._profile_length
                         );
         }
